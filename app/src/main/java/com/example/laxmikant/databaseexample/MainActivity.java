@@ -1,6 +1,7 @@
 package com.example.laxmikant.databaseexample;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     
     Context context;
     EditText etName, etAge, etCompany, etRole;
-    Button btn;
+    Button btn, showBtn;
     DatabaseService dbService;
 
     @Override
@@ -30,12 +31,23 @@ public class MainActivity extends AppCompatActivity {
         etCompany = findViewById(R.id.company);
         etRole = findViewById(R.id.role);
         btn = findViewById(R.id.saveBtn);
+        showBtn = findViewById(R.id.show);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 addEmployeeInfo();
             }
         });
+        showBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { navigateToShowInformationActivity();
+            }
+        });
+    }
+
+    private void navigateToShowInformationActivity() {
+        Intent intent = new Intent(context, ShowInformationActivity.class);
+        startActivity(intent);
     }
 
     private void addEmployeeInfo() {

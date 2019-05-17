@@ -25,7 +25,7 @@ public class DatabaseService extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String CREATE_TABLE = "CREATE TABLE " + TABLE_INFO + "(" + KEY_NAME + "TEXT," + KEY_AGE + "TEXT," + KEY_COMPANY + "TEXT," + KEY_ROLE + "TEXT" + ")";
+        String CREATE_TABLE = "CREATE TABLE " + TABLE_INFO + "(" + KEY_NAME + " TEXT," + KEY_AGE + " TEXT," + KEY_COMPANY + " TEXT," + KEY_ROLE + " TEXT" + ")";
         sqLiteDatabase.execSQL(CREATE_TABLE);
     }
 
@@ -51,8 +51,8 @@ public class DatabaseService extends SQLiteOpenHelper {
         String selectQuery = "SELECT * FROM " + TABLE_INFO;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
+        EmployeeInfoModel infoModel = new EmployeeInfoModel();
         while(cursor.moveToNext()) {
-            EmployeeInfoModel infoModel = new EmployeeInfoModel();
             infoModel.setName(cursor.getString(0));
             infoModel.setAge(cursor.getString(1));
             infoModel.setCompany(cursor.getString(2));
