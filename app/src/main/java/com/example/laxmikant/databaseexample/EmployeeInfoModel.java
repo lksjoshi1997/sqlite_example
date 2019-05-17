@@ -5,16 +5,18 @@ public class EmployeeInfoModel {
     private String age;
     private String company;
     private String role;
+    private byte[] imageArray;
 
     public EmployeeInfoModel() {
 
     }
 
-    public EmployeeInfoModel(String name, String age, String company, String role) {
+    public EmployeeInfoModel(String name, String age, String company, String role, byte[] imageArray) {
         this.name = name;
         this.age = age;
         this.company = company;
         this.role = role;
+        this.imageArray = imageArray;
     }
 
     public String getName() {
@@ -47,5 +49,13 @@ public class EmployeeInfoModel {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public byte[] getImageArray() {
+        return imageArray;
+    }
+
+    public void setImageArray(byte[] imageArray) {
+        this.imageArray = imageArray;
     }
 }

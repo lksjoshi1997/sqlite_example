@@ -18,6 +18,7 @@ public class DatabaseService extends SQLiteOpenHelper {
     private static final String KEY_AGE = "age";
     private static final String KEY_COMPANY = "company";
     private static final String KEY_ROLE = "role";
+    private static final String KEY_IMAGE = "image";
 
     public DatabaseService(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -25,7 +26,7 @@ public class DatabaseService extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String CREATE_TABLE = "CREATE TABLE " + TABLE_INFO + "(" + KEY_NAME + " TEXT," + KEY_AGE + " TEXT," + KEY_COMPANY + " TEXT," + KEY_ROLE + " TEXT" + ")";
+        String CREATE_TABLE = "CREATE TABLE " + TABLE_INFO + "(" + KEY_NAME + " TEXT," + KEY_AGE + " TEXT," + KEY_COMPANY + " TEXT," + KEY_ROLE + " TEXT," + KEY_IMAGE + " BLOB" + ")";
         sqLiteDatabase.execSQL(CREATE_TABLE);
     }
 
@@ -42,6 +43,7 @@ public class DatabaseService extends SQLiteOpenHelper {
         values.put(KEY_AGE, infoModel.getAge());
         values.put(KEY_COMPANY, infoModel.getCompany());
         values.put(KEY_ROLE, infoModel.getRole());
+        values.put(KEY_IMAGE, infoModel.getImageArray());
         db.insert(TABLE_INFO, null, values);
         db.close();
     }
@@ -57,6 +59,7 @@ public class DatabaseService extends SQLiteOpenHelper {
             infoModel.setAge(cursor.getString(1));
             infoModel.setCompany(cursor.getString(2));
             infoModel.setRole(cursor.getString(3));
+            infoModel.setImageArray(cursor.getBlob(4));
             infoList.add(infoModel);
         }
         return infoList;
